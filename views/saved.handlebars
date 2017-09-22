@@ -1,0 +1,36 @@
+<div id="saved">
+    <div class="row">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">TEST ARTICLE TITLE</span>
+                    <span><a href="#notes" class="modal-trigger"><i class="small material-icons">note</i></a></span>
+                    <span><a href="#delete"><i class="small material-icons modal-trigger">delete</i></a><span>
+                    <div class="clearfix"></div>
+                    <p>Test Description adfadsfadsf adsf adsfasdf asdf asdf asdfadfasdfasdfa adfa dsf adsf adsf adf adsf ads df ad ad adfadf dfadf adf adf adf</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODALS -->
+    <div id="notes" class="modal">
+        <div class="modal-content">
+            <h4>Notes</h4>
+            <textarea></textarea>
+            <button id="save">save</button>
+            <div id="notes">
+                <div id="note-1">
+                    <p>This is a note <span><a href="#delete"><i class="small material-icons modal-trigger">edit</i></a></span><span><a href="#delete"><i class="small material-icons modal-trigger">delete</i></a></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('.modal').modal();
+    });
+</script>
