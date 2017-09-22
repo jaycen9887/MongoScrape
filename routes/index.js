@@ -3,7 +3,7 @@ var router = express.Router();
 var cheerio = require('cheerio');
 var request = require('request');
 var Article = require('../models/Article');
-var scraper = require('../controller/scraper');
+var scraper = require('../controller/scrape');
 
 router.get('/', function(req, res){
     res.render('index');
