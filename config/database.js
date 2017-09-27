@@ -4,19 +4,37 @@
 //}
 
 var mongoose = require('mongoose');
+var mongojs = require('mongojs');
 
-mongoose.Promise = Promise;
 
-mongoose.connect('mongodb://mongodbuser:mongo@ds147884.mlab.com:47884/heroku_csddc6c9');
+var databaseUrl = 'mongoScrape';
+var collections = ['Articles', 'Notes'];
+var db = mongojs(databaseUrl, collections);
 
-var db = mongoose.connection;
-
-db.on('error', function(err){
-    console.log("Mongoose Error: " + err);
+db.on('error', function(error){
+    console.log("Database Error: " + error);
 });
 
-db.once('open', function(){
-    console.log("Mongoose Connected");
-});
+module.exports = db;
+
+
+
+
+
+
+
+//mongoose.Promise = Promise;
+
+//mongoose.connect('mongodb://mongodbuser:mongo@ds147884.mlab.com:47884/heroku_csddc6c9');
+
+//var db = mongoose.connection;
+
+//db.on('error', function(err){
+    //console.log("Mongoose Error: " + err);
+//});
+
+//db.once('open', function(){
+//    console.log("Mongoose Connected");
+//});
 
 module.exports = db;

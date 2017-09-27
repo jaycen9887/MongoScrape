@@ -24,6 +24,7 @@
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.5",
+    "mongojs": "^2.4.1",
     "mongoose": "^4.11.12",
     "morgan": "^1.8.2",
     "passport": "^0.4.0",

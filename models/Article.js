@@ -1,30 +1,24 @@
-var mongoose = require('mongoose');
-var db = require = ('../config/database');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var Schema = mongoose.Schema;
-
-var ArticleSchema = new Schema ({
+const ArticleSchema = new Schema ({
     title: {
         type: String,
         required: true,
-        unique: true,
-        dropDups: true
     },
     summary: {
-        type: String,
-        required: true, 
-        unique: true
+        type: String,    
     },
     experience: {
         type: String,
-        required: true,
-        unique: true
     },
     link: {
         type: String,
-        required: true, 
-        unique: true
     }, 
+    saved: {
+        type: Boolean,
+        default: false
+    },
     note: [{
         type: Schema.Types.ObjectId,
         ref: 'Note'

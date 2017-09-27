@@ -1,6 +1,11 @@
 .clearfix {
     clear: both;
 }
+
+body {
+    overflow: hidden;
+}
+
 nav {
     background-color: #2D5674;
 }
@@ -30,9 +35,9 @@ ul {
 }
 
 #card {
-    height: 60%;
+    height: 10%;
     text-align: center;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 }
 
 #card:before {
@@ -51,7 +56,7 @@ ul {
 
 #img-text {
     color: #D81A60;    
-    padding: 10% 0%;
+    padding: 5% 0%;
     /*text-shadow: -1px 0 #0C2342, 0 1px #0C2342, 1px 0 #0C2342, -1px 0 #0C2342;*/
 }
 
@@ -62,8 +67,25 @@ ul {
     width: 90%;
     margin: auto;
     height: 100%;
-    min-height: 50vh;
-    
+    min-height: 50vh;    
+
+}
+
+#content { 
+    font-size: 20px;
+    text-align: left;
+}
+
+#links {
+    text-align: right;
+}
+
+i {
+    color: white;
+}
+
+i:hover {
+    cursor: pointer;
 }
 
 /* **********SAVED.HANDLEBARS********** */
@@ -86,6 +108,14 @@ ul {
     z-index: -1;
     background-image:url('../img/background.jpg');
     opacity: .5;
+}
+
+#saved-articles{
+    background-color: #2D5674;
+    height: 59em;
+    overflow-y: scroll;
+    margin-top: 20px;
+    color: white;
 }
 
 #title {

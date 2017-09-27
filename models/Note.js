@@ -1,14 +1,14 @@
-var mongoose = require('mongoose');
-var db = require('../config/database');
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
-
-var NoteSchema = new Schema({
-    text: {
+const NoteSchema = new mongoose.Schema({
+    title: {
+        type: String
+    },
+    body:{
         type: String
     }
 });
 
-var Note = mongoose.model('Note', NoteSchema);
+const Note = mongoose.model('Note', NoteSchema);
 
 module.exports = Note;

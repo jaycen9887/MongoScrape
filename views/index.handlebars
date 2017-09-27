@@ -1,32 +1,29 @@
-<div id="main">
+<div id="main" class="index">
     <div class="row">
         <div id="card" class="col s12">
-        <div id="img-text" class="center-align">
-            <h1>Mongo Scraper</h1>
-            <h5>Indeed.com Edition</h5>
+            <div id="img-text" class="center-align">
+                <h1>Mongo Scraper</h1>
+                <h5>Indeed.com Edition</h5>
+            </div>
         </div>
-    </div>
     </div>
     
     <div id="output">
         <div class="row">
-            <div class="col s12">
-                <table>
-                    <tbody>
-                        {{#each articles}}
-                        <div class="row">
-                            <div class="col s8">
-                                <a href="{{this.link}}" class="scrape-title" target="_blank">{{this.title}}</a>
-                            </div>
-                            <div class="col s4">
-                                <a id="{{this.id}}" href="/save"><i class="small material-icons">save</i></a>
-                            </div>
-                        </div>  
-                        {{/each}}  
-                    </tbody>
-
-                </table>
+            <div class="col s12" id="articles">
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(() => {
+        $.getJSON('/articles', function(data){
+            for(var i = 0; i < data.length; i++){
+                $('#articles').append('<div id="content" class="col s8"><p>' + data[i].title + '<br />' + data[i].link + '</p></div>'); 
+                $('#articles').append('<div id="links" class="col s4"><span class="saveIcons"><i data-saved="'+ data[i].saved +'" data-id="'+ data[i]._id +'" class="save small material-icons">save</i></span>');
+            }
+        }); 
+
+
+    });
+</script>
