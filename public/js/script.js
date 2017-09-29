@@ -1,19 +1,28 @@
 $(document).on('click', '.save', function() {
-    
-    console.log('SAVED!');
     let thisId = $(this).attr('data-id');
-    let thisSave = $(this).attr('data-saved');
-    console.log('ID: ', thisId, " Save: ", thisSave);
         $.ajax({
             method: 'POST',
             url: '/save/' + thisId,
-            data: {
-                saved: thisSave
-            }
         }).done((data)=> {
-            console.log(data);
+            //console.log('Saved', data);
         });
-        
+});
+
+$(document).on('click', '#saveBtn', function(){
+    let thisId = $(articleId).text();
+    //console.log(thisId);
+    let thisBody = $(noteContent).val();
+    //console.log(thisBody);
+
+    $.ajax({
+        method: 'POST',
+        url: '/notes/' + thisId,
+        data: {
+            newNote: thisBody
+        } 
+    }).done((data) => {
+
+    })
 });
 
 
@@ -25,15 +34,33 @@ $(document).on('click', '.delete', function(){
         method: 'POST',
         url: '/delete/' + thisId,
     }).done((data)=> {
-        console.log(data);
+        //console.log(data);
     });
 });
 
-$(document).on('click', '.note', function() {
-    console.log('Note');
+$(document).on('click', '#addNotes', function() {
+    //console.log('Note');
+    let thisId = $(this).attr('data-id');
+    $(articleId).text(thisId);
+    //console.log(thisId);
+    $('articleTitle').text(thisId);
+    $.ajax({
+        method: 'GET',
+        url: '/notes/' + thisId
+    }).done((data) => {
+        $.getJSON('/notes/:id', function(data){
+            //console.log("DATA!!!", data);
+            for(var i = 0; i < data.length; i++){
+                //console.log('DATA: ',data[i]);
+                $('#articleNotes').append('<div id="content" class="col s8"><p>' + data[i].note + '</p>');
+                $('#articleNotes').append('<div id="links" class="col s4"><span class="deleteNote"<i data-id="' + data[i]._id + '" class="small material-icons">delete</i></span><span class="editNote"<i data-id="' + data[i]._id + '" class="small material-icons">edit</i></span></div>');
+            }
+        });
+    });
 });
 
-$('#addNote').on('click', () => {
+
+/* $('#addNote').on('click', () => {
     let thisId = $(this).attr('data-id');
     
     $.ajax({
@@ -60,9 +87,7 @@ $('#saveNote').on('click', () => {
         }
     }).done((data)=> {
         console.log(data);
-        //$('#notes').empty();
-
     });
     $('#titleInput').val('');
     $('#bodyInput').val('');
-});
+}); */

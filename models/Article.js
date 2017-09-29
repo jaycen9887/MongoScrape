@@ -6,15 +6,18 @@ const ArticleSchema = new Schema ({
         type: String,
         required: true,
     },
-    summary: {
+    date: {
         type: String,    
     },
-    experience: {
+    img: {
         type: String,
     },
     link: {
         type: String,
     }, 
+    description: {
+
+    },
     saved: {
         type: Boolean,
         default: false

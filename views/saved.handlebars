@@ -8,11 +8,13 @@
     <div id="notes" class="modal">
         <div class="modal-content">
             <h4>Notes</h4>
-            <textarea></textarea>
-            <button id="save">save</button>
+            {{!-- <form method="POST" action"/save/notes"> --}}
+                <input type="hidden" id="articleId">
+                <textarea name="noteContent" id="noteContent"></textarea>
+                <button id="saveBtn">save</button>  
+            {{!-- </form> --}}
             <div id="notes">
-                <div id="note-1">
-                    <p>This is a note <span><a href="#delete"><i class="small material-icons modal-trigger">edit</i></a></span><span><a href="#delete"><i class="small material-icons modal-trigger">delete</i></a></span></p>
+                <div class="row" id="articleNotes">
                 </div>
             </div>
         </div>
@@ -26,8 +28,9 @@
         $.getJSON('/savedArticles', function(data){
             for(var i = 0; i < data.length; i++){
                 $('#saved-articles').append('<div id="content" class="col s8"><p>' + data[i].title + '<br />' + data[i].link + '</p></div>'); 
-                $('#saved-articles').append('<div id="links" class="col s4"><span class="deleteIcons"><i data-id="'+ data[i]._id +'" class="delete small material-icons">delete</i></span> <span><a class="modal-trigger" href="#notes"><i data-id="'+ data[i]._id +'" class="note small material-icons">note</i></a></span> ');
+                $('#saved-articles').append('<div id="links" class="col s4"><span class="deleteIcons"><i data-id="'+ data[i]._id +'" class="delete small material-icons">delete</i></span> <span><a id="addNotes" data-id="'+ data[i]._id +'" class="modal-trigger" href="#notes"><i class="note small material-icons">note</i></a></span> ');
             }
-    });
+        });
+
     });
 </script>
