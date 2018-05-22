@@ -52,33 +52,6 @@ module.exports = function(app){
         });
     });
 
-    /* router.get('/scrape', function(req,res){
-        request('http://www.echojs.com/', function(error, response, html) {
-            const $ = cheerio.load(html);
-
-            $('article h2').each(function(i, element) {
-                let result = {};
-
-                result.title = $(this).children('a').text();
-                result.link = $(this).children('a').attr('href');
-                result.saved = false;
-
-                let entry = new Article(result);
-
-                entry.save(function(err, doc) {
-                    if(err) {
-                        console.log(err);
-                        //res.send(err);
-                    } else {
-                        console.log(doc);
-                        //res.send(doc);
-                    }
-                });
-            });
-        });
-     res.redirect('/');
-    }); */
-
     router.get('/articles', (req, res) => {
         Article.find({}, (error, doc) => {
             if(error){
@@ -88,34 +61,7 @@ module.exports = function(app){
             }
         }); 
     });
-
-    /* router.get('/articles/:id', (req, res) => {
-        Article.findOne({'_id': req.params.id}).populate('note').exec((error, doc) => {
-            if(error){
-                console.log(error);
-            } else {
-                res.json(doc);
-            }
-        });
-    });
-
-    router.post('/articles/:id', (req, res) => {
-        var newNote = new Note(req.body);
-        newNote.save((error, doc) => {
-            if(error){
-                console.log(error);
-            }else {
-                Article.findOneAndUpdate({'_id': req.params.id}, {"note": doc._id}).exec((err, doc) => {
-                    if(err) {
-                        console.log(err);
-                    }else {
-                        res.send(doc);
-                    }
-                });
-            }
-        });
-    }); */
-
+    
     router.post('/save/:id', (req,res) => {
         Article.findOneAndUpdate({'_id': req.params.id}, {'saved': true},(err, doc) => {
             if(err){
@@ -139,14 +85,11 @@ module.exports = function(app){
     });
 
      router.get('/notes/:id', (req, res) => {
-        //console.log('$^%$#$%^%$#$%^%$##$%$#@#$%$#@#$%^%$##$%',req.params.id);
         let id = req.params.id;
-        //       '59cbbc0c6d76991e94cad7bb'
         Article.find({'_id': id}, '_id note title', function(error, doc) {
             if(error){
                 console.log(error);
             } else {
-                // console.log("******************************************************************************",doc);
                 res.json(doc);
                
             }
@@ -165,11 +108,6 @@ module.exports = function(app){
             }
         });
     }); 
-
-    /* router.post('/save/note/:id', function(req, res){
-        console.log('Note Added');
-        Article.findOneAndUpdate()
-    }); */
 
     return router;
 
